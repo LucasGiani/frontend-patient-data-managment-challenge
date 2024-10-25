@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Instructions to Run the Application Locally
 
-Currently, two official plugins are available:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/LucasGiani/frontend-patient-data-managment-challenge.git
+   cd /frontend-patient-data-managment-challenge
+   ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. **Install Dependencies:**
+   Make sure you have [Node.js](https://nodejs.org/) installed. Then, install the required packages using npm or yarn:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Expanding the ESLint configuration
+3. **Run the Application:**
+   Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+4. **Access the Application:**
+   Open your browser and go to `http://localhost:5173` (or the port specified in the terminal).
 
-- Configure the top-level `parserOptions` property like this:
+# Documentation of Design Decisions and Libraries/Tools Used
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Design Decisions:
+- **Component Structure:**
+  The application is organized into components, each responsible for a specific part of the UI. The main components include `PatientList`, `PatientCard`, `ManagePatientModal`, and `PatientForm`. This separation allows for better maintainability and scalability of the application. I could have created reusable components for the inputs in the PatientForm, passing the necessary props such as label, name, field type, and error message to display. However, since there were only a few fields, I opted to implement them directly in the form, even though it resulted in repeating some style code.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **State Management:**
+  Local state management is handled using React's `useState` and `useEffect` hooks. The patients' data is fetched from an external API and stored in the state. The decision to use local state rather than an external library (like Zustand) was made to keep the application lightweight and simple. If there had been many components or different pages where the same state was necessary, I would have opted for Zustand or React's Context API.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Form Handling:**
+  The `PatientForm` component is designed to handle both adding and editing patient data. It accepts a `patient` prop, which can be `null` for creating a new patient or contain data for editing an existing one. Form validation is implemented using react-hook-form to ensure the accuracy of the input data and manage form submission.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Color Selection:**
+  The chosen color palette of blue and green is associated with health and safety, which aligns with the application's purpose of managing patient data. These colors enhance user experience (UX) and user interface (UI) by providing a calming and trustworthy visual environment.
+
+## Libraries/Tools Used:
+- **React:** The main library for building the user interface.
+- **TypeScript:** Used for type safety and to improve code quality.
+- **Tailwind CSS:** A utility-first CSS framework used for styling the application. It allows for rapid UI development with responsive design.
+- **Vite:** A fast development environment that provides a modern tooling experience for React applications.
+- **React Hook Form:** A library for managing form state and validation, providing an efficient way to handle form submissions and user input validation.
+- **ESLint:** A static code analysis tool used to identify problematic patterns in JavaScript and TypeScript code. It helps ensure code quality and consistency across the project.
+- **Prettier:** An opinionated code formatter that enforces a consistent style in the codebase, making it easier to read and maintain.
+- **Heroicons:** A set of free, MIT-licensed high-quality SVG icons for you to use in your web projects. These icons enhance the visual appeal and usability of the application.
