@@ -1,33 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import PatientList from './components/PatientList'
+import { UserGroupIcon } from '@heroicons/react/16/solid'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header className="sticky white shadow-md">
+        <div className="flex flex-row gap-3 text-primary items-center mx-auto max-w-7xl p-4 sm:p-6 lg:p-4">
+          <UserGroupIcon className="w-10" />
+          <h1 className="font-light sm:text-1xl lg:text-3xl">
+            Frontend - Patient Data Management
+          </h1>
+        </div>
+      </header>
+      <main className="mx-auto max-w-7xl p-4 sm:p-6 lg:p-4">
+        <PatientList />
+      </main>
     </>
   )
 }
